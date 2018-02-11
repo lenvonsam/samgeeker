@@ -1,0 +1,7 @@
+{
+  "name": "sam-site",
+  "script": "npm",
+  "args": "start",
+  "max_memory_restart": "70M",
+  "watch": true
+}

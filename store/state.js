@@ -122,7 +122,22 @@ const state = {
     id: 6,
     url: 'http://osuptraav.bkt.clouddn.com/life6.jpg',
     title: '欢乐马拉松',
-    intro: '&nbsp;&nbsp;&nbsp;&nbsp;2016年10月,山姆参加了常州西太湖举行的半程马拉松，并取得了189名的最佳成绩。<br>&nbsp;&nbsp;&nbsp;&nbsp;马拉松是一项老少皆宜的运动项目，高水平的竞技与群众的广泛参与，没有过多竞赛规则的限制，旨在增加全民体魄，延长全民寿命。<br>&nbsp;&nbsp;&nbsp;&nbsp;此图地点西太湖马拉松集合地描述了长跑达人山姆赛后获取奖牌喜悦的心情，同时也呼吁更多的人能加入马拉松的行列。<br><br><br><p style="text-align:center">如果和相同经历或者感兴趣的童鞋都可以联系山姆</p>'
+    intro: '&nbsp;&nbsp;&nbsp;&nbsp;2016年10月，山姆参加了常州西太湖举行的半程马拉松，并取得了189名的最佳成绩。<br>&nbsp;&nbsp;&nbsp;&nbsp;马拉松是一项老少皆宜的运动项目，高水平的竞技与群众的广泛参与，没有过多竞赛规则的限制，旨在增加全民体魄，延长全民寿命。<br>&nbsp;&nbsp;&nbsp;&nbsp;此图地点西太湖马拉松集合地描述了长跑达人山姆赛后获取奖牌喜悦的心情，同时也呼吁更多的人能加入马拉松的行列。<br><br><br><p style="text-align:center">如果和相同经历或者感兴趣的童鞋都可以联系山姆</p>'
+  }, {
+    id: 7,
+    url: 'http://osuptraav.bkt.clouddn.com/life7.jpg',
+    title: '广缘续姻缘',
+    intro: '&nbsp;&nbsp;&nbsp;&nbsp;2017年2月，山姆亲手操办了人生第二件大事，同时非常感谢亲人、朋友、同事一起到场见证我们的爱情。<br>&nbsp;&nbsp;&nbsp;&nbsp;山姆当天也默默地为自己祈福，希望能与自己相爱的人--“执子之手，与子偕老”，每天柴米油盐，平淡相守。<br>&nbsp;&nbsp;&nbsp;&nbsp;此图描述了山姆与大家分享人生大喜的喜悦之情。<br><br><br><p style="text-align:center">如果和相同经历或者感兴趣的童鞋都可以联系山姆</p>'
+  }, {
+    id: 8,
+    url: 'http://osuptraav.bkt.clouddn.com/life8.jpg',
+    title: '三娃闹山姆',
+    intro: '&nbsp;&nbsp;&nbsp;&nbsp;2017年6月,三位美丽、可爱的小公主降临到了山姆家，这也将是山姆一身的幸福、快乐的源泉。<br>&nbsp;&nbsp;&nbsp;&nbsp;山姆当天特地百度了下，根据权威机构公布三胞胎的概率为七十万分之一，这么小的概率居然发生在山姆的身上，真是祥云瑞气，凤凰来仪。<br>&nbsp;&nbsp;&nbsp;&nbsp;此图描述了山姆家三千金满月之喜。<br><br><br><p style="text-align:center">如果和相同经历或者感兴趣的童鞋都可以联系山姆</p>'
+  }, {
+    id: 9,
+    url: 'http://osuptraav.bkt.clouddn.com/life9.jpg',
+    title: '学无人驾驶',
+    intro: '&nbsp;&nbsp;&nbsp;&nbsp;2018年1月,山姆有幸赶上了国内追求新科技的脚步，历经三个月的奋战终于提前拿到了“无人驾驶基础”的资质证书。<br>&nbsp;&nbsp;&nbsp;&nbsp;无人驾驶是集自动控制、体系结构、人工智能、视觉计算等众多技术于一体，是计算机科学、模式识别和智能控制技术高度发展的产物，也是衡量一个国家科研实力和工业水平的一个重要标志，在国防和国民经济领域具有广阔的应用前景。<br>&nbsp;&nbsp;&nbsp;&nbsp;此图描述了山姆提前毕业的拿到证书后的喜悦之情，同时也深深感受到自己的所知如沧海之一粟的渺小，还需不断的自我提升，自我学习。<br><br><br><p style="text-align:center">如果和相同经历或者感兴趣的童鞋都可以联系山姆</p>'
   }]
 }
 

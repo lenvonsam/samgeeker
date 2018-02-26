@@ -73,6 +73,7 @@ module.exports = {
   },
   serverMiddleware: [
     bodyParser.json(),
-    '~/api/backend'
+    '~/api/backend',
+    '~/api/wechatSecurityAuth'
   ]
 }

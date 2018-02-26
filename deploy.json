@@ -2,6 +2,6 @@
   "name": "sam-site",
   "script": "npm",
   "args": "start",
-  "max_memory_restart": "70M",
+  "max_memory_restart": "80M",
   "watch": true
 }

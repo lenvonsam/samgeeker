@@ -15,7 +15,7 @@
             | 山姆极客
         #samHeadCollapse.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li(v-for="(t,i) in mainTitleArray", @click="jump(t.url)")
+            li(v-for="(t,i) in mainTitleArray", @click="topbarJump(t)")
               a(:class="{active: t.url.path == routePath}") {{t.name}}
     nuxt
     .footer
@@ -116,6 +116,9 @@ export default {
     ...mapActions([
       'configKeyVal'
     ]),
+    topbarJump (obj) {
+      obj.outlink ? this.jumpToNewWindow(obj.url.path) : this.jump(obj.url)
+    },
     jumpToNewWindow (url) {
       window.open(url, '_blank')
     },

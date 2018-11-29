@@ -47,7 +47,7 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      sampic: 'http://osuptraav.bkt.clouddn.com/samy.jpg'
+      sampic: 'http://commfile.thinkingsam.cn/samy.jpg'
     }
   },
   components: {

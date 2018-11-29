@@ -75,7 +75,7 @@
 <style scoped>
   .banner {
     min-height: 700px;
-    background: url('http://osuptraav.bkt.clouddn.com/headbg.jpg') no-repeat center center;
+    background: url('http://commfile.thinkingsam.cn/headbg.jpg') no-repeat center center;
     background-size: cover;
     width:100%;
     padding-top:20%;

@@ -11,6 +11,10 @@ const state = {
     url: {path: '/projects'}
   }, {
     name: '博客',
+    url: {path: 'https://blog.thinkingsam.cn/'},
+    outlink: true
+  }, {
+    name: '黑科技',
     url: {path: 'http://h5present.thinkingsam.cn'},
     outlink: true
   }, {

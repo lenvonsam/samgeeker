@@ -41,7 +41,7 @@
               p
                 | 山姆极客&nbsp;
                 i.glyphicon.glyphicon-copyright-mark
-                | &nbsp;2017
+                | &nbsp;2019
               p
                 a(href="http://www.miitbeian.gov.cn", target="_blank") 苏ICP备17013255号
 

@@ -51,6 +51,9 @@ export default {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+.sam-section img {
+  box-shadow: 0px 0px 8px #ddd;
+}
 .h5 {
   font-size: 18px;
   font-weight: bold;
@@ -59,8 +62,8 @@ export default {
 .gallery-info {
   padding-top: 20px;
   padding-bottom: 10px;
-  background: rgba(111, 232, 176, 0.6);
-  box-shadow: 0px 0px 6px #ddd;
+  background: rgba(111, 232, 176, 0.4);
+  box-shadow: 0px 0px 8px #ddd;
 }
 @media (max-width: 768px) {
   .gallery-info {

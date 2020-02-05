@@ -162,32 +162,34 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "~assets/scss/main";
+<style>
+@import url("../assets/scss/main.css");
 .header {
   background-color: rgba(111, 232, 176, 0.6);
   border: 0px;
-  .sam-brand {
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 4px;
-    font-size: 20px;
-    img {
-      height: 30px;
-      width: 30px;
-      display: inline-block;
-      margin-right: 5px;
-      margin-top: -5px;
-      margin-left: -5px;
-    }
-  }
+}
+.header .sam-brand {
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 4px;
+  font-size: 20px;
+}
+
+.header .sam-brand img {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-top: -5px;
+  margin-left: -5px;
 }
 .footer {
   background-color: black;
   color: #fff;
-  a {
-    color: #fff;
-  }
+}
+
+.footer a {
+  color: #fff;
 }
 
 .footer .follows i.fa {

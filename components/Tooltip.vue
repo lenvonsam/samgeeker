@@ -7,91 +7,91 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      placement: {
-        type: String,
-        default: 'right'
-      },
-      title: {
-        type: String,
-        required: true
-      }
+export default {
+  props: {
+    placement: {
+      type: String,
+      default: 'right'
     },
-    data () {
-      return {
-        show: false
-      }
+    title: {
+      type: String,
+      required: true
+    }
+  },
+  data () {
+    return {
+      show: false
     }
   }
+}
 </script>
 
-<style lang="scss", scoped>
-  .sam-tooltip {
-    display: inline-block;
-    position: relative;
-    &:hover {
-      cursor: pointer;
-    }
-    .title-wrapper {
-      position: absolute;
-      z-index: 20;
-      &.left {
-        top: -5px;
-        left: -70px;
-      }
-      &.right {
-        right: -63px;
-        top: -5px;
-      }
-      &.top {
-        top: -30px;
-        left: -20px;
-      }
-      &.bottom {
-        bottom: -30px;
-        left: -20px;
-      }
-      .title {
-        position: relative;
-        background: #000;
-        display: inline-block;
-        color: #fff;
-        padding: 5px 0px;
-        font-size: 12px;
-        width: 60px;
-        text-align: center;
-        border-radius: 3px;
-      }
-      &.left .title:after,
-      &.right .title:before,
-      &.top .title:before,
-      &.bottom .title:before {
-        position: absolute;
-        content: '';
-        border: 5px solid transparent;
-      }
+<style scoped>
+.sam-tooltip {
+  display: inline-block;
+  position: relative;
+}
+.sam-tooltip:hover {
+  cursor: pointer;
+}
+.sam-tooltip .title-wrapper {
+  position: absolute;
+  z-index: 20;
+}
+.sam-tooltip .title-wrapper.left {
+  top: -5px;
+  left: -70px;
+}
+.sam-tooltip .title-wrapper.right {
+  right: -63px;
+  top: -5px;
+}
+.sam-tooltip .title-wrapper.top {
+  top: -30px;
+  left: -20px;
+}
+.sam-tooltip .title-wrapper.bottom {
+  bottom: -30px;
+  left: -20px;
+}
+.sam-tooltip .title-wrapper .title {
+  position: relative;
+  background: #000;
+  display: inline-block;
+  color: #fff;
+  padding: 5px 0px;
+  font-size: 12px;
+  width: 60px;
+  text-align: center;
+  border-radius: 3px;
+}
+.sam-tooltip .title-wrapper.left .title:after,
+.sam-tooltip .title-wrapper.right .title:before,
+.sam-tooltip .title-wrapper.top .title:before,
+.sam-tooltip .title-wrapper.bottom .title:before {
+  position: absolute;
+  content: "";
+  border: 5px solid transparent;
+}
 
-      &.left .title:after {
-        border-left: 5px solid #000;
-        right: -10px;
-        top: 6px;
-      }
-      &.right .title:before {
-        border-right: 5px solid #000;
-        top: 6px;
-        left: -10px;
-      }
-      &.top .title:before {
-        border-top: 5px solid #000;
-        bottom: -10px;
-        left: 24px;
-      }
-      &.bottom .title:before {
-        border-bottom: 5px solid #000;
-        top: -10px;
-        left: 24px;
-      }
-    }
-  }
+.sam-tooltip .title-wrapper.left .title:after {
+  border-left: 5px solid #000;
+  right: -10px;
+  top: 6px;
+}
+.sam-tooltip .title-wrapper.right .title:before {
+  border-right: 5px solid #000;
+  top: 6px;
+  left: -10px;
+}
+.sam-tooltip .title-wrapper.top .title:before {
+  border-top: 5px solid #000;
+  bottom: -10px;
+  left: 24px;
+}
+.sam-tooltip .title-wrapper.bottom .title:before {
+  border-bottom: 5px solid #000;
+  top: -10px;
+  left: 24px;
+}
 </style>

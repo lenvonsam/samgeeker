@@ -6,7 +6,7 @@
       hr
       .row
         .col-sm-4.col-sm-offset-2.col-md-4.col-md-offset-2
-          img.img-responsive.img-rounded(v-lazy="sampic",style="margin-bottom:20px;height:330px;")
+          img.img-responsive.img-rounded(v-lazy="sampic",style="margin-bottom:20px;height:380px;")
         .col-sm-4.col-md-4
           collapse(:collapseArray="features", type="green")
     div
@@ -25,13 +25,13 @@
     #samLife
       h3.text-center
         | 山姆生活
-        span.pull-right.label.label-warning.project-more 持续更新中...
+        span.pull-right.label.label-warning.project-more(@click="jump('/gallery')") 更多
       .claerfix
       hr
       .row
-        .col-md-4(v-for="life in lifeArray")
+        .col-md-4(v-for="life in lifes")
           .life-pic
-            img.img-responsive(v-lazy="life.url",style="height:350px;")
+            img.img-responsive(v-lazy="life.thumbUrl",style="height:350px;")
             .pic-desc
               div(style="position:relative;height:100%;")
                 div(style="background:rgba(0,0,0,0.4);position:absolute;top:0px;left:0px;width:100%;bottom:0px;z-index:1")
@@ -47,7 +47,8 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      sampic: 'http://commfile.thinkingsam.cn/samy.jpg'
+      sampic: 'http://commfile.thinkingsam.cn/samy.jpg',
+      lifes: []
     }
   },
   components: {
@@ -58,6 +59,7 @@ export default {
     if (this.$route.query.type && this.$route.query.type === 'life') {
       this.$scrollTo('#samLife')
     }
+    this.loadTopGallery()
   },
   computed: {
     ...mapState({
@@ -67,37 +69,46 @@ export default {
     })
   },
   methods: {
+    async loadTopGallery () {
+      try {
+        const { data } = await this.apiGet('/backend/gallery/topShow')
+        console.log('gallery data', data)
+        if (data.returnCode === 0) this.lifes = data.list
+      } catch (e) {
+        console.error(e)
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-  .life-pic {
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 20px;
-  }
+.life-pic {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
 
-  .life-pic:hover .pic-desc {
-    bottom:0px;
-  }
+.life-pic:hover .pic-desc {
+  bottom: 0px;
+}
 
-  .life-pic .pic-desc {
-    position: absolute;
-    left:0px;
-    bottom: -500px;
-    width: 100%;
-    height: 100%;
-    color:#fff;
-    transition: all .8s;
-  }
+.life-pic .pic-desc {
+  position: absolute;
+  left: 0px;
+  bottom: -500px;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  transition: all 0.8s;
+}
 
-  .project-more {
-    margin-right:3%;
-    font-size:14px;
-  }
-  .project-more:hover {
-    cursor: pointer;
-  }
+.project-more {
+  margin-right: 3%;
+  font-size: 14px;
+}
+.project-more:hover {
+  cursor: pointer;
+}
 </style>
 

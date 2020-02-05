@@ -5,8 +5,7 @@ const router = express.Router()
 const app = express()
 
 const htpl = require('../utils/httpUtil')
-const proxyUrl = 'http://wechat.xingyun361.com/quasarserver/'
-const syunUrl = 'http://showcase.thinkingsam.cn/syun-backend/api/'
+const syunUrl = 'http://localhost:8668/api/'
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
@@ -16,24 +15,56 @@ router.use((req, res, next) => {
   next()
 })
 
+function commGet(url, res, proxyUrl = syunUrl) {
+  htpl.httpGet(proxyUrl + url).then(
+    ({ data }) => {
+      res.json(data)
+    },
+    err => {
+      res.json({ returnCode: -1, errMsg: err.message || '网络异常' })
+    }
+  )
+}
+
+function commPost(url, params, res, proxyUrl = syunUrl) {
+  htpl.httpPost(proxyUrl + url, params).then(
+    ({ data }) => {
+      res.json(data)
+    },
+    err => {
+      res.json({ returnCode: -1, errMsg: err.message || '网络异常' })
+    }
+  )
+}
+
 router.post('/sendEmail', (req, res) => {
-  const body = req.body
-  htpl.httpStreamPost(`${proxyUrl}samsite/sendMail`, body).then(({data}) => {
-    res.json(data)
-  }, err => {
-    console.log(err)
-    res.json({returnCode: -1, errMsg: err.message})
-  })
+  const params = req.body
+  params.to = '287754553@qq.com'
+  commPost('mail/sendText', params, res)
+})
+
+router.get('/gallery/topShow', (req, res) => {
+  commGet('gallery/topShow?bid=1', res)
+})
+
+router.post('/gallery/detail', (req, res) => {
+  commGet('gallery/' + Number(req.body.id), res)
+})
+
+router.post('/gallery', (req, res) => {
+  const params = req.body
+  params.bid = 1
+  commPost('gallery', params, res)
 })
 
 router.post('/project', (req, res) => {
   const body = req.body
-  htpl.httpGet(`${syunUrl}project?bucketId=1&type=${body.type}&currentPage=${body.currentPage}&pageSize=${body.pageSize}`).then(({data}) => {
-    res.json(data)
-  }, err => {
-    console.error(err)
-    res.json({returnCode: -1, errMsg: err.message})
-  })
+  commGet(
+    `project?bid=1&type=${body.type}&currentPage=${body.currentPage}&pageSize=${
+      body.pageSize
+    }`,
+    res
+  )
 })
 
 module.exports = {

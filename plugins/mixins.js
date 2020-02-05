@@ -3,11 +3,17 @@ import htpl from '~/utils/httpUtil'
 
 const mixinConfig = {
   methods: {
-    jump (to) {
+    jump(to) {
       if (this.$router) this.$router.push(to)
     },
-    apiPost (url, body) {
+    back() {
+      if (this.$router) this.$router.go(-1)
+    },
+    apiPost(url, body) {
       return htpl.httpStreamPost(url, body)
+    },
+    apiGet(url) {
+      return htpl.httpGet(url)
     }
   }
 }

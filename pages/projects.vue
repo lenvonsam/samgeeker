@@ -30,7 +30,7 @@
                       i.fa.fa-android
                     span(v-else)
                 .clearfix
-                div(v-html="p.intro",style="max-height:80px;overflow:hidden")
+                .project-content-ellipsis(v-html="p.intro")
       .col-md-10.col-md-offset-2.text-center
         button.btn(@click="loadMore",style="width:90%;margin-top:1rem",:class="{'btn-success': loadText == '显示更多'}") {{loadText}}
     .project-service
@@ -83,172 +83,179 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import tooltip from '~/components/Tooltip.vue'
-  import modal from '~/components/Modal.vue'
+import { mapState } from 'vuex'
+import tooltip from '~/components/Tooltip.vue'
+import modal from '~/components/Modal.vue'
 
-  export default {
-    data () {
-      return {
-        projectType: ['pc', 'mobile', 'template'],
-        projectListIndex: 0,
-        projectList: [{
-          title: '终端项目',
-          count: 0
-        }, {
-          title: '移动项目',
-          count: 0
-        }, {
-          title: '资源项目',
-          count: 0
-        }],
-        projectArray: [],
-        showProjectModal: false,
-        modalImgs: [],
-        modalTitle: '',
-        pageIdx: 1,
-        loadText: '加载更多'
-      }
-    },
-    watch: {
-    },
-    components: {
-      tooltip,
-      modal
-    },
-    beforeMount () {
-      if (this.$route.query.typeIdx) {
-        let type = this.$route.query.typeIdx
-        this.projectListIndex = Number(type)
-      }
+export default {
+  data () {
+    return {
+      projectType: ['pc', 'mobile', 'template'],
+      projectListIndex: 0,
+      projectList: [{
+        title: '终端项目',
+        count: 0
+      }, {
+        title: '移动项目',
+        count: 0
+      }, {
+        title: '资源项目',
+        count: 0
+      }],
+      projectArray: [],
+      showProjectModal: false,
+      modalImgs: [],
+      modalTitle: '',
+      pageIdx: 1,
+      loadText: '加载更多'
+    }
+  },
+  watch: {
+  },
+  components: {
+    tooltip,
+    modal
+  },
+  beforeMount () {
+    if (this.$route.query.typeIdx) {
+      let type = this.$route.query.typeIdx
+      this.projectListIndex = Number(type)
+    }
+    this.loadData()
+  },
+  computed: {
+    ...mapState({
+      pageSize: state => state.pageSize
+    }),
+    currentPage () {
+      return 0 + (this.pageIdx - 1) * this.pageSize
+    }
+  },
+  methods: {
+    switchProjects (index) {
+      this.jump({ path: '/projects', query: { typeIdx: index } })
+      this.modalImgs = []
+      this.modalTitle = ''
+      this.projectListIndex = index
+      this.pageIdx = 1
+      this.loadText = '显示更多'
       this.loadData()
     },
-    computed: {
-      ...mapState({
-        pageSize: state => state.pageSize
-      }),
-      currentPage () {
-        return 0 + (this.pageIdx - 1) * this.pageSize
-      }
+    openProjectModal (obj, title) {
+      this.modalImgs = obj.split(',')
+      this.modalTitle = title
+      this.showProjectModal = !this.showProjectModal
     },
-    methods: {
-      switchProjects (index) {
-        this.jump({path: '/projects', query: {typeIdx: index}})
-        this.modalImgs = []
-        this.modalTitle = ''
-        this.projectListIndex = index
-        this.pageIdx = 1
-        this.loadText = '显示更多'
-        this.loadData()
-      },
-      openProjectModal (obj, title) {
-        this.modalImgs = obj.split(',')
-        this.modalTitle = title
-        this.showProjectModal = !this.showProjectModal
-      },
-      loadMore () {
-        ++this.pageIdx
-        this.loadData()
-      },
-      async loadData () {
-        const me = this
-        me.loadText = '读取中...'
-        try {
-          let {data} = await this.apiPost('/backend/project', {type: this.projectType[this.projectListIndex], currentPage: this.currentPage, pageSize: this.pageSize})
-          if (data.returnCode === 0) {
-            if (data.list.length > 0 && me.pageIdx === 1) {
-              me.projectArray = data.list
-              for (let i in data.count) {
-                let item = data.count[i]
-                console.log(item)
-                if (item[0] === 'pc') {
-                  me.projectList[0].count = item[1]
-                } else if (item[0] === 'mobile') {
-                  me.projectList[1].count = item[1]
-                } else {
-                  me.projectList[2].count = item[1]
-                }
+    loadMore () {
+      ++this.pageIdx
+      this.loadData()
+    },
+    async loadData () {
+      const me = this
+      me.loadText = '读取中...'
+      try {
+        let { data } = await this.apiPost('/backend/project', { type: this.projectType[this.projectListIndex], currentPage: this.currentPage, pageSize: this.pageSize })
+        if (data.returnCode === 0) {
+          if (data.list.length > 0 && me.pageIdx === 1) {
+            me.projectArray = data.list
+            for (let i in data.count) {
+              let item = data.count[i]
+              console.log(item)
+              if (item[0] === 'pc') {
+                me.projectList[0].count = item[1]
+              } else if (item[0] === 'mobile') {
+                me.projectList[1].count = item[1]
+              } else {
+                me.projectList[2].count = item[1]
               }
-              me.loadText = '显示更多'
-            } else if (data.list.length > 0 && me.pageIdx > 1) {
-              for (let k in data.list) {
-                me.projectArray.push(data.list[k])
-              }
-              me.loadText = '显示更多'
-            } else if (data.list.length === 0 && me.pageIdx > 1) {
-              me.loadText = '加载完成'
-              --me.pageIdx
-            } else {
-              me.projectArray = []
-              me.loadText = '暂无相关内容'
             }
+            me.loadText = '显示更多'
+          } else if (data.list.length > 0 && me.pageIdx > 1) {
+            for (let k in data.list) {
+              me.projectArray.push(data.list[k])
+            }
+            me.loadText = '显示更多'
+          } else if (data.list.length === 0 && me.pageIdx > 1) {
+            me.loadText = '加载完成'
+            --me.pageIdx
+          } else {
+            me.projectArray = []
+            me.loadText = '暂无相关内容'
           }
-        } catch (err) {
-          console.error(err)
         }
+      } catch (err) {
+        console.error(err)
       }
     }
   }
+}
 
 </script>
 
 <style scoped>
+.project-service {
+  background: #f3f6fa;
+  margin-top: 5%;
+  color: #fefefe;
+}
 
-  .project-service {
-    background:#f3f6fa;
-    margin-top:5%;
-    color:#fefefe;
-  }
+.project-service h4 {
+  color: #496174;
+}
 
-  .project-service h4 {
-    color: #496174;
-  }
+.project-service p,
+.project-service h5 {
+  color: #858c9c;
+}
 
-  .project-service p, .project-service h5 {
-    color: #858c9c;
-  }
+.list-group-item.active .badge {
+  background: #fff;
+  color: #0f0f0f;
+}
 
-  .list-group-item.active .badge {
-    background: #fff;
-    color: #0f0f0f;
-  }
+.project-service i.fa {
+  color: rgb(111, 232, 176);
+  font-size: 50px;
+}
 
-  .project-service i.fa {
-    color: rgb(111, 232, 176);
-    font-size: 50px;
-  }
+span.left-mark {
+  border-left: 5px solid rgb(111, 232, 176);
+}
 
-  span.left-mark {
-    border-left:5px solid rgb(111,232, 176);
-  }
+.list-group-item:hover {
+  cursor: pointer;
+}
 
-  .list-group-item:hover {
-    cursor: pointer;
-  }
+.list-group-item.active {
+  background: rgba(111, 232, 176, 0.8);
+  border: 1px solid rgb(111, 232, 176);
+}
 
-  .list-group-item.active {
-    background: rgba(111,232,176,.8);
-    border: 1px solid rgb(111,232,176);
-  }
+.list-group-item .badge {
+  color: #fff;
+  background: rgb(111, 232, 176);
+}
 
-  .list-group-item .badge{
-    color:#fff;
-    background: rgb(111,232,176)
-  }
+.link-icons a {
+  color: rgb(111, 232, 176);
+}
 
-  .link-icons a {
-    color: rgb(111,232,176);
-  }
+.btn-success {
+  background: rgba(111, 232, 176, 0.8) !important;
+  border: 1px solid rgba(111, 232, 176, 0.4);
+  color: #fff !important;
+}
+.project-content-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+}
 
-  .btn-success {
-    background: rgba(111,232,176,.8) !important;
-    border: 1px solid rgba(111,232,176,.4);
-    color: #fff !important;
-  }
-
-  .btn {
-    background: #ddd;
-    color:#858c9c;
-  }
-
+.btn {
+  background: #ddd;
+  color: #858c9c;
+}
 </style>

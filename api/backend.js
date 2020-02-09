@@ -5,7 +5,8 @@ const router = express.Router()
 const app = express()
 
 const htpl = require('../utils/httpUtil')
-const syunUrl = 'http://10.31.86.129:8668/api/'
+// const syunUrl = 'http://10.31.86.129:8668/api/'
+const syunUrl = 'http://10.31.86.129:8099/yun-server/api/'
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)

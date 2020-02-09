@@ -6,7 +6,8 @@ const app = express()
 
 const htpl = require('../utils/httpUtil')
 // const syunUrl = 'http://10.31.86.129:8668/api/'
-const syunUrl = 'http://10.31.86.129:8099/yun-server/api/'
+// const syunUrl = 'http://10.31.86.129:8099/yun-server/api/'
+const syunUrl = 'http://showcase.thinkingsam.cn/yun-server/api/'
 
 router.use((req, res, next) => {
   Object.setPrototypeOf(req, app.request)
@@ -61,9 +62,7 @@ router.post('/gallery', (req, res) => {
 router.post('/project', (req, res) => {
   const body = req.body
   commGet(
-    `project?bid=1&type=${body.type}&currentPage=${body.currentPage}&pageSize=${
-      body.pageSize
-    }`,
+    `project?bid=1&type=${body.type}&currentPage=${body.currentPage}&pageSize=${body.pageSize}`,
     res
   )
 })

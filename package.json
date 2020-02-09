@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "prod": "git branch && git pull origin prod && git log && npm install && nuxt build && nuxt start",
+    "prod": "git pull origin prod && git log && npm install && nuxt build && nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },

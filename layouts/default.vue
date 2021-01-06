@@ -43,7 +43,7 @@
                 i.glyphicon.glyphicon-copyright-mark
                 | &nbsp;2020
               p
-                a(href="http://www.miitbeian.gov.cn", target="_blank") 苏ICP备17013255号
+                a(href="http://www.miitbeian.gov.cn", target="_blank") 苏ICP备17013255号-1
 
     transition(name="fade",enter-active-class="fadeInUp",leave-active-class="fadeOutDown")
       .back-to-top(v-if="canShowBottomBtn", v-scroll-to="{ el: '#appFrame' }")
